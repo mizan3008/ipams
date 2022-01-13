@@ -144,6 +144,6 @@ eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan migrate"
 # fi
 
 echo "All Done!"
-echo "Go to http://www.ipams.dev/ to see it in action"
+echo "Go to http://www.ipams-dev.com/ to see it in action"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 
