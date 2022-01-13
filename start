@@ -143,6 +143,13 @@ eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan migrate"
 #     eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan generate:dummy-data"
 # fi
 
+echo "Setup frontend"
+eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app npm install"
+eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app npx mix"
+
+echo "Clearing terminal"
+eval "clear"
+
 echo "All Done!"
 echo "Go to http://www.ipams-dev.com/ to see it in action"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
