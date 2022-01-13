@@ -22,3 +22,6 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 docker/database_data_dir
+public/css
+public/js
+public/mix-manifest.json
