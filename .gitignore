@@ -25,3 +25,4 @@ docker/database_data_dir
 public/css
 public/js
 public/mix-manifest.json
+public/fonts
