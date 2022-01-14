@@ -19,7 +19,9 @@ function Layout({ children, title }) {
             </header>
 
             <main className="flex-shrink-0 pt-3">
-                {children}
+                <div className="container">
+                    {children}
+                </div>
             </main>
 
             <Footer />
