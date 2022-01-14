@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,10 +15,13 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return Inertia::render('Welcome');
+})->name('welcome');
+
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+Route::post('/authenticate', [App\Http\Controllers\Auth\LoginController::class, 'authenticate'])->name('authenticate');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->name('dashboard');
+    Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

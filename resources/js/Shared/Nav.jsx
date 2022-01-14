@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link, usePage } from '@inertiajs/inertia-react'
+import { Inertia } from '@inertiajs/inertia';
 
 function Nav(props) {
 
     const { app, auth } = usePage().props
+
+    function handleLogout(event) {
+        event.preventDefault();
+        Inertia.post('/logout');
+    }
 
     return (
         <React.Fragment>
@@ -30,7 +36,7 @@ function Nav(props) {
                                         </li>
                                     </ul>
                                     <div className="text-end">
-                                        <Link href='/logout' className="btn btn-outline-light me-2">Logout</Link>
+                                        <button type='button' onClick={handleLogout} className="btn btn-outline-light me-2">Logout</button>
                                     </div>
                                 </>
                             )
