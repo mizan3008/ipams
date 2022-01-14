@@ -1,20 +1,21 @@
+import { Head } from '@inertiajs/inertia-react';
 import React from 'react'
 import Layout from '../Shared/Layout';
-import Nav from '../Shared/Nav';
+
 
 function Welcome(props) {
     return (
         <React.Fragment>
-
-            <Layout>
-                <div className="container">
-                    <h1 className="mt-5">Sticky footer with fixed navbar</h1>
-                    <p className="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code className="small">padding-top: 60px;</code> on the <code className="small">main &gt; .container</code>.</p>
-                    <p>Back to <a href="/docs/5.1/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
-                </div>
-            </Layout>
+            <div className="container">
+                <h1 className="mt-5">Welcome to {props.app.name}</h1>
+                <p className="lead">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
         </React.Fragment>
     );
 }
+
+Welcome.layout = page => <Layout children={page} title="Welcome" />
 
 export default Welcome;

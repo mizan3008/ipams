@@ -5,7 +5,7 @@ function Footer(props) {
         <React.Fragment>
             <footer className="footer mt-auto py-3 bg-light">
                 <div className="container">
-                    <span className="text-muted">Place sticky footer content here.</span>
+                    <span className="text-muted">&copy; 2022</span>
                 </div>
             </footer>
 
