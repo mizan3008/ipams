@@ -17,7 +17,7 @@ class CreateIpAddressesTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->index();
             $table->string('label', 100);
-            $table->ipAddress('ip_address', 20)->unique();
+            $table->ipAddress('ip_address', 250)->unique();
             $table->bigInteger('created_by');
             $table->bigInteger('updated_by')->nullable();
             $table->timestamps();

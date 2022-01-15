@@ -25,7 +25,7 @@ class StoreIpAddressRequest extends FormRequest
     {
         return [
             'label' => 'required|max:100',
-            'ip_address' => 'required|ip|unique:App\Models\IpAddress,ip_address|max:20',
+            'ip_address' => 'required|ip|unique:App\Models\IpAddress,ip_address|max:250',
         ];
     }
 }

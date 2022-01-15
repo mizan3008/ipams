@@ -29,7 +29,7 @@ class UpdateIpAddressRequest extends FormRequest
             'ip_address' => [
                 'required',
                 'ip',
-                'max:20',
+                'max:250',
                 Rule::unique('ip_addresses')->ignore($this->id),
             ],
         ];
