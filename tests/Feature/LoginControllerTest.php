@@ -39,7 +39,7 @@ class LoginControllerTest extends TestCase
         $password = 'password';
 
         $user = User::factory()->create([
-            'password' => bcrypt($password)
+            'password' => $password
         ]);
 
         $response = $this->post('/authenticate', [
