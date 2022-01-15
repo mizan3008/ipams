@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginFormRequest;
 use App\Providers\RouteServiceProvider;
+use App\Services\AuthService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LoginController extends Controller
@@ -32,14 +31,17 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private $authService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService)
     {
         $this->middleware('guest')->except('logout');
+        $this->authService = $authService;
     }
 
     public function login()
@@ -50,27 +52,21 @@ class LoginController extends Controller
     public function authenticate(LoginFormRequest $request)
     {
         $validated_data = $request->validated();
-        // $remember = $validated_data['remember'] ?? 0;
 
-        $credentials = [
-            'email' => $validated_data['email'],
-            'password' => $validated_data['password']
-        ];
+        $response = $this->authService->authenticate($validated_data);
 
-        if (Auth::attempt($credentials)) {
+        if ($response['status'] === 'success') {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back()->withErrors($response['errors']);
     }
 
     public function logout()
     {
-        Auth::logout();
-        return redirect()->intended('/');
+        $this->authService->logout();
+        return redirect('/');
     }
 }
