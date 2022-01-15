@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IpAddressController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +23,8 @@ Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']
 Route::post('/authenticate', [App\Http\Controllers\Auth\LoginController::class, 'authenticate'])->name('authenticate');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+    Route::resource('ip-address', IpAddressController::class);
 });

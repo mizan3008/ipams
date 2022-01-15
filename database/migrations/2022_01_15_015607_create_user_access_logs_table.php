@@ -17,7 +17,7 @@ class CreateUserAccessLogsTable extends Migration
             $table->id();
             $table->unsignedInteger('user_id')->nullable();
             $table->enum('login_method', ['sso', 'login'])->default('login');
-            $table->string('ip_address')->nullable();
+            $table->ipAddress('ip_address')->nullable();
             $table->string('user_agent')->nullable();
             $table->timestamp('login_datetime')->useCurrent();
         });

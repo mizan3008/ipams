@@ -7,7 +7,7 @@ function Layout({ children, title }) {
 
     const { app } = usePage().props
 
-    const myTitle = `${app.name}::${title}`;
+    const myTitle = `${app.name} - ${title}`;
 
     return (
         <React.Fragment>

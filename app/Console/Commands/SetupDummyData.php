@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\IpAddress;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -41,7 +42,7 @@ class SetupDummyData extends Command
     {
         $user = User::whereEmail('admin@example.com')->first();
 
-        if(is_null($user)){
+        if (is_null($user)) {
             $user = new User();
             $user->name = 'Admin';
             $user->email = 'admin@example.com';
@@ -50,6 +51,11 @@ class SetupDummyData extends Command
             $user->remember_token = Str::random(10);
             $user->save();
         }
+
+        IpAddress::factory()->count(25)->create([
+            'user_id' => $user->id,
+            'created_by' => $user->id,
+        ]);
 
         $this->info('Done!');
         return 0;
