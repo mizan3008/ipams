@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\IPAddress\StoreIpAddressRequest;
 use App\Http\Requests\IPAddress\UpdateIpAddressRequest;
 use App\Http\Resources\IpAddressResource;
+use App\Models\AuditLog;
 use App\Models\IpAddress;
 use App\Services\IPAddressService;
 use Illuminate\Http\Request;
@@ -64,6 +65,8 @@ class IpAddressController extends Controller
     public function show(IpAddress $ipAddress)
     {
         $this->authorize('view', $ipAddress);
+
+        $ipAddress->load('auditLogs');
 
         return Inertia::render('IPAddress/View', [
             'ip_address' => new IpAddressResource($ipAddress)

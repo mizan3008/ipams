@@ -10,7 +10,7 @@ function getClientIp(): string
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     } else {
         //from remote address
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
     }
 
     return $ip;

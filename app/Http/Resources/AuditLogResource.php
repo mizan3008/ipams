@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class IpAddressResource extends JsonResource
+class AuditLogResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,9 @@ class IpAddressResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'label' => $this->label,
-            'ip_address' => $this->ip_address,
-            'user' => new UserResource($this->whenLoaded('user')),
+            'event' => $this->event,
+            'data' => $this->data,
             'created_at' => $this->created_at->diffForHumans(),
-            'updated_at' => $this->updated_at,
-            'audit_logs' => AuditLogResource::collection($this->whenLoaded('auditLogs'))
         ];
     }
 }
