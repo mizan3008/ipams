@@ -51,7 +51,7 @@ behind the scene, this command will execute the following steps--
 
 ## Default access
 ```
-username: admin@example.com 
+email: admin@example.com 
 password: password
 ```
 
