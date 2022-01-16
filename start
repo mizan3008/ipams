@@ -138,11 +138,6 @@ echo "Running initial migrations"
 # migration
 eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan migrate"
 
-# generate initial data
-# if [[ ${GENERATE_DUMMY_DATA} = true ]]; then
-#     eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan generate:dummy-data"
-# fi
-
 echo "Setup frontend"
 eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app npm install"
 eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app npx mix"
@@ -150,7 +145,11 @@ eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app npx mix"
 echo "Clearing terminal"
 eval "clear"
 
-echo "All Done!"
+# generate initial data
+if [[ ${GENERATE_DUMMY_DATA} = true ]]; then
+    eval "${DOCKER_COMMAND_PREFIX}docker exec -it ipams-app php artisan setup:dummy-data"
+fi
+
 echo "Go to http://www.ipams-dev.com/ to see it in action"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 

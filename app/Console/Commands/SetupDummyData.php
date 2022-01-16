@@ -57,7 +57,12 @@ class SetupDummyData extends Command
             'created_by' => $user->id,
         ]);
 
-        $this->info('Done!');
+        $this->info("--------------------------------------");
+        $this->info("# " . config('app.name'));
+        $this->info("--------------------------------------");
+        $this->info("Email: admin@example.com");
+        $this->info("Password: password");
+        $this->info("--------------------------------------");
         return 0;
     }
 }
