@@ -42,12 +42,18 @@ Run below command to run application. This command will set up the entire applic
 behind the scene, this command will execute the following steps--
 
 - Set up app and test database
-- Create and .env file based on the .env.example
+- Create .env file based on the .env.example
 - Install composer
 - Run migration
 - Run npm install
 - Run npx mix and
 - Generate dummy data
+
+## Default access
+```
+username: admin@example.com 
+password: password
+```
 
 ## To execute command manually
 ```
